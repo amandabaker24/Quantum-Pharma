@@ -98,7 +98,12 @@ export default function ProfileSettingsPage() {
         }
       }
     } catch (error) {
-      alert('Network error. Please try again.');
+      console.error('Failed to update profile:', error);
+      console.error('Error details:', {
+        message: error instanceof Error ? error.message : 'Unknown error',
+        error
+      });
+      alert(`Network error: ${error instanceof Error ? error.message : 'Please check console'}`);
     } finally {
       setIsLoading(false);
     }

@@ -51,7 +51,10 @@ export async function GET(request: NextRequest) {
       'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=0',
       'Pragma': 'no-cache',
       'Expires': '0',
-      'CDN-Cache-Control': 'no-store'
+      'CDN-Cache-Control': 'no-store',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, X-Resource-Version'
     }
   });
 }
@@ -238,7 +241,10 @@ export async function PATCH(request: NextRequest) {
         'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=0',
         'Pragma': 'no-cache',
         'Expires': '0',
-        'CDN-Cache-Control': 'no-store'
+        'CDN-Cache-Control': 'no-store',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, PATCH, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, X-Resource-Version'
       }
     });
     
@@ -253,6 +259,19 @@ export async function PATCH(request: NextRequest) {
       }
     }, { status: 500 });
   }
+}
+
+// Handle OPTIONS preflight requests for CORS
+export async function OPTIONS(request: NextRequest) {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, X-Resource-Version',
+      'Access-Control-Max-Age': '86400',
+    }
+  });
 }
 
 /**
