@@ -1,0 +1,22 @@
+{
+  "devFiles": [],
+  "ampDevFiles": [],
+  "polyfillFiles": [
+    "static/chunks/134bd_next_dist_build_polyfills_polyfill-nomodule.js"
+  ],
+  "lowPriorityFiles": [],
+  "rootMainFiles": [
+    "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_b121e094._.js",
+    "static/chunks/134bd_next_dist_compiled_react-dom_79329663._.js",
+    "static/chunks/134bd_next_dist_compiled_react-server-dom-turbopack_0067cfca._.js",
+    "static/chunks/134bd_next_dist_compiled_next-devtools_index_89785d83.js",
+    "static/chunks/134bd_next_dist_compiled_ad2d663c._.js",
+    "static/chunks/134bd_next_dist_client_1b2307ce._.js",
+    "static/chunks/134bd_next_dist_1a15d990._.js",
+    "static/chunks/134bd_@swc_helpers_cjs_d359d0f7._.js",
+    "static/chunks/quantumpharm_a0ff3932._.js",
+    "static/chunks/turbopack-quantumpharm_05573f0e._.js"
+  ],
+  "pages": {},
+  "ampFirstPages": []
+}

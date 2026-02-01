@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///Users/amandab/quantumpharm/app/page.tsx"],"sourcesContent":["export default function Home() {\n  return (\n    <main>\n      <h1>QuantumPharm</h1>\n      <p> Click here to see profile settings <a href=\"/profile/settings\">/profile/settings</a></p>\n    </main>\n  );\n}\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8PAAC;;0BACC,8PAAC;0BAAG;;;;;;0BACJ,8PAAC;;oBAAE;kCAAoC,8PAAC;wBAAE,MAAK;kCAAoB;;;;;;;;;;;;;;;;;;AAGzE"}}]
+}
