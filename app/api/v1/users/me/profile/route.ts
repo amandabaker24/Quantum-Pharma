@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Force dynamic rendering and disable all caching for this route
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 /**
  * API Contract for User Profile Updates
  * 
@@ -44,9 +48,10 @@ export async function GET(request: NextRequest) {
     }
   }, {
     headers: {
-      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=0',
       'Pragma': 'no-cache',
-      'Expires': '0'
+      'Expires': '0',
+      'CDN-Cache-Control': 'no-store'
     }
   });
 }
@@ -230,9 +235,10 @@ export async function PATCH(request: NextRequest) {
       }
     }, {
       headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=0',
         'Pragma': 'no-cache',
-        'Expires': '0'
+        'Expires': '0',
+        'CDN-Cache-Control': 'no-store'
       }
     });
     
