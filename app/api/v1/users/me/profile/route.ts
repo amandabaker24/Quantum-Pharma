@@ -42,6 +42,12 @@ export async function GET(request: NextRequest) {
       requestId: generateRequestId(),
       timestamp: new Date().toISOString()
     }
+  }, {
+    headers: {
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    }
   });
 }
 
@@ -221,6 +227,12 @@ export async function PATCH(request: NextRequest) {
         timestamp: new Date().toISOString(),
         warnings: warnings.length > 0 ? warnings : undefined,
         successMessage: successMessage
+      }
+    }, {
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
       }
     });
     
