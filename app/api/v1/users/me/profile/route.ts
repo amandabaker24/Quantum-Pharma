@@ -64,11 +64,11 @@ export async function GET(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
   try {
 
-    // 1. Check If-Match header for version control
-    // This line reads the value of the "If- Match" header from incoming Http request (frontend) 
-    const ifMatch = request.headers.get('if-match'); 
+    // 1. Check If-Match header for version control (case-insensitive)
+    // Support both 'If-Match' and 'if-match' for compatibility
+    const ifMatch = request.headers.get('if-match') || request.headers.get('If-Match');
     
-    // If the frotend does not send an "If-Match" value then it goes into this code block
+    // If the frontend does not send an "If-Match" value then it goes into this code block
     if (!ifMatch) {
       return NextResponse.json({
         error: {
