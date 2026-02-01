@@ -56,7 +56,7 @@ export default function ProfileSettingsPage() {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'If-Match': profile?.version ? profile.version.toString() : '1'
+          'X-Resource-Version': profile?.version ? profile.version.toString() : '1'
         },
         body: JSON.stringify(formData)
       });
