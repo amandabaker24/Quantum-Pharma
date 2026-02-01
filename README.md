@@ -1,4 +1,4 @@
-## QuantumPharm User Profile Management (Option B)
+## Quantum Pharma User Profile Management (Option B)
 #### View & Test Program: https://quantum-pharma-six.vercel.app/
 ### Introduction
 This project is a full-stack user profile management system built with Next.js, React, and TypeScript. It allows users to view and update their profile information—including name, email, and home address—through a modern web interface. The system demonstrates best practices in API design, form validation, error handling, and optimistic locking for concurrent updates.
