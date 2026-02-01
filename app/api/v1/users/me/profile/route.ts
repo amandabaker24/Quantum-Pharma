@@ -75,23 +75,23 @@ export async function GET(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
   try {
 
-    // 1. Check If-Match header for version control (case-insensitive)
-    // Support both 'If-Match' and 'if-match' for compatibility
-    const ifMatch = request.headers.get('if-match') || request.headers.get('If-Match');
+    // 1. Check X-Resource-Version header for version control
+    // Using custom header to avoid conflicts with Vercel edge network's If-Match/ETag handling
+    const versionHeader = request.headers.get('x-resource-version');
     
-    // If the frontend does not send an "If-Match" value then it goes into this code block
-    if (!ifMatch) {
+    // If the frontend does not send version header then it goes into this code block
+    if (!versionHeader) {
       return NextResponse.json({
         error: {
-          code: 'MISSING_IF_MATCH',
-          message: 'If-Match header is required for version control',
+          code: 'MISSING_VERSION_HEADER',
+          message: 'X-Resource-Version header is required for version control',
           requestId: generateRequestId(),
           timestamp: new Date().toISOString()
         }
       }, { status: 400 });
     }
     
-    const requestedVersion = parseInt(ifMatch, 10);
+    const requestedVersion = parseInt(versionHeader, 10);
     
     // 2. Check for version conflict (optimistic locking)
     // It stops updates if the profile has changed since the client last loaded it,
