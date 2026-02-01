@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Force dynamic rendering and disable all caching for this route
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 /**
  * API Contract for User Profile Updates
  * 
@@ -42,6 +46,13 @@ export async function GET(request: NextRequest) {
       requestId: generateRequestId(),
       timestamp: new Date().toISOString()
     }
+  }, {
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=0',
+      'Pragma': 'no-cache',
+      'Expires': '0',
+      'CDN-Cache-Control': 'no-store'
+    }
   });
 }
 
@@ -64,11 +75,11 @@ export async function GET(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
   try {
 
-    // 1. Check If-Match header for version control
-    // This line reads the value of the "If- Match" header from incoming Http request (frontend) 
-    const ifMatch = request.headers.get('if-match'); 
+    // 1. Check If-Match header for version control (case-insensitive)
+    // Support both 'If-Match' and 'if-match' for compatibility
+    const ifMatch = request.headers.get('if-match') || request.headers.get('If-Match');
     
-    // If the frotend does not send an "If-Match" value then it goes into this code block
+    // If the frontend does not send an "If-Match" value then it goes into this code block
     if (!ifMatch) {
       return NextResponse.json({
         error: {
@@ -221,6 +232,13 @@ export async function PATCH(request: NextRequest) {
         timestamp: new Date().toISOString(),
         warnings: warnings.length > 0 ? warnings : undefined,
         successMessage: successMessage
+      }
+    }, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=0',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+        'CDN-Cache-Control': 'no-store'
       }
     });
     
